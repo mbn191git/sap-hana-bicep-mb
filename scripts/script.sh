@@ -30,7 +30,7 @@ function setEnv()
   if [ "${HANAVER}" = "2.0 SPS03 REV30 (51053061)" ]; then hanapackage="51053061"; fi
   if [ "${HANAVER}" = "2.0 SPS04 REV40 (51053787)" ]; then hanapackage="51053787"; fi
   if [ "${HANAVER}" = "2.0 SPS05 REV56" ]; then hanapackage="56"; fi
-  if [ "${HANAVER}" = "2.0 SPS06 REV60" ]; then hanapackage="60"; fi
+  if [ "${HANAVER}" = "2.0 SPS06 REV63" ]; then hanapackage="63"; fi
 
    
   #get the VM size via the instance api
@@ -203,7 +203,7 @@ function prepareSAPBins()
     /usr/bin/wget -o ${hanapackage}.ZIP --quiet $Uri/${hanapackage}.ZIP${sas}
     unzip ${hanapackage}.ZIP  
   else
-    if [ "${hanapackage}" = "56" ] || [ "${hanapackage}" = "60" ]
+    if [ "${hanapackage}" = "56" ] || [ "${hanapackage}" = "63" ]
     then
       /usr/bin/wget -O SAPCAR --quiet $Uri/SAPCAR${sas}
       /usr/bin/wget -O IMDB_SERVER20_0${hanapackage}_0-80002031.SAR --quiet $Uri/IMDB_SERVER20_0${hanapackage}_0-80002031.SAR${sas}
@@ -245,7 +245,7 @@ function installHANA()
   
   echo $VMIPADDR $VMNAME >> /etc/hosts
   
-  if [ "${hanapackage}" = "56" ] || [ "${hanapackage}" = "60" ]
+  if [ "${hanapackage}" = "56" ] || [ "${hanapackage}" = "63" ]
   then
     /hana/data/sapbits/${hanapackage}/SAP_HANA_DATABASE/hdblcm -b --configfile /hana/data/sapbits/hdbinst-local.cfg
   else
